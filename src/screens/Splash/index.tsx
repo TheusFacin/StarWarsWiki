@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Image, Text } from 'react-native'
+import { View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 
-import logoImg from '../../assets/LogoEmpire.png'
+import { Logo, Text } from '../../components'
 
 import { styles } from './styles'
 
@@ -10,8 +10,8 @@ const Splash = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <Image source={logoImg} style={styles.logo} />
-      <Text style={styles.titleText}>StarWars Wiki</Text>
+      <Logo />
+      <Text color={'red'}>StarWars Wiki</Text>
     </View>
   )
 }
