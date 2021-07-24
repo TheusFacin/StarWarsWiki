@@ -1,18 +1,27 @@
-import React from 'react'
-import { View } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
+import React, { useEffect } from 'react'
 
-import { Logo, Text } from '../../components'
+import { Logo, Text, Container } from '../../components'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { StackParamList } from '../../routes'
 
-import { styles } from './styles'
+type SplashNavigationProps = StackNavigationProp<StackParamList, 'Splash'>
 
-const Splash = () => {
+type SplashProps = {
+  navigation: SplashNavigationProps
+}
+
+const Splash = ({ navigation }: SplashProps) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('Home')
+    }, 200)
+  }, [navigation])
+
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
+    <Container justify="center" align="center">
       <Logo />
       <Text>StarWars Wiki</Text>
-    </View>
+    </Container>
   )
 }
 

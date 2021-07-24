@@ -1,4 +1,6 @@
+import 'react-native-gesture-handler'
 import React from 'react'
+import { StatusBar } from 'expo-status-bar'
 import {
   useFonts,
   SourceSansPro_400Regular,
@@ -10,7 +12,7 @@ import AppLoading from 'expo-app-loading'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './src/styles'
 
-import { Splash } from './src/screens/Splash'
+import { Routes } from './src/routes'
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -24,7 +26,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Splash />
+      <StatusBar style="light" />
+      <Routes />
     </ThemeProvider>
   )
 }
