@@ -1,2 +1,2 @@
-export * from './StyledText'
+export * from './Text'
 export * from './Logo'

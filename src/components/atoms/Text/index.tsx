@@ -7,8 +7,8 @@ type TextProps = {
   color?: string
 }
 
-const Text = ({ children, color = '#fff' }: TextProps) => {
-  return <StyledText color={color}>{children}</StyledText>
-}
+const Text = ({ children, color }: TextProps) => (
+  <StyledText color={color}>{children}</StyledText>
+)
 
 export { Text, TextProps }

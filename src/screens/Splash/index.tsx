@@ -11,7 +11,7 @@ const Splash = () => {
     <View style={styles.container}>
       <StatusBar style="light" />
       <Logo />
-      <Text color={'red'}>StarWars Wiki</Text>
+      <Text>StarWars Wiki</Text>
     </View>
   )
 }
