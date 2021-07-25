@@ -26,6 +26,10 @@ type ContainerProps = {
   h?: number
 }
 
+type ScreenScrollContainerProps = {
+  bg?: Colors
+}
+
 const Container = styled.View<ContainerProps>`
   display: flex;
   flex-direction: ${({ direction }) => direction || 'column'};
@@ -36,4 +40,8 @@ const Container = styled.View<ContainerProps>`
   height: ${({ h, theme }) => (h ? `${theme.metrics.px(h)}px` : '100%')};
 `
 
-export { Container }
+const ScreenScrollContainer = styled.ScrollView<ScreenScrollContainerProps>`
+  background-color: ${({ bg, theme }) => theme.colors[bg || 'dark']};
+`
+
+export { Container, ScreenScrollContainer }

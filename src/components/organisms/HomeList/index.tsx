@@ -1,28 +1,39 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 import { Card } from '../../molecules'
+import { Text } from '../../atoms'
 
-const HomeList = () => {
-  const FAKE_DATA = [
-    {
-      id: '0',
-      image_url:
-        'https://sm.ign.com/ign_br/screenshot/default/darth-vader_5yvm.jpg',
-    },
-    {
-      id: '1',
-      image_url:
-        'https://network.grupoabril.com.br/wp-content/uploads/sites/4/2020/02/desafio-jedi-de-mestre-yoda-consertar-as-frases-consegue-vocecc82.jpg?quality=100&strip=info',
-    },
-  ]
+import { ListContainer } from './styles'
+import { theme } from '../../../styles'
 
+type HomeListProps = {
+  data: {
+    id: string
+    image_url: string
+  }[]
+  title: string
+}
+
+const HomeList = ({ data, title }: HomeListProps) => {
   return (
-    <FlatList
-      data={FAKE_DATA}
-      horizontal
-      renderItem={({ item }) => <Card item={item} />}
-      keyExtractor={item => item.id}
-    />
+    <ListContainer>
+      <Text fontFamily="black" size={18} ml={24}>
+        {title}
+      </Text>
+
+      <FlatList
+        data={data}
+        horizontal
+        renderItem={({ item }) => <Card item={item} />}
+        keyExtractor={item => item.id}
+        contentContainerStyle={{
+          paddingLeft: theme.metrics.px(24),
+          paddingTop: theme.metrics.px(12),
+          paddingBottom: theme.metrics.px(24),
+        }}
+        showsHorizontalScrollIndicator={false}
+      />
+    </ListContainer>
   )
 }
 

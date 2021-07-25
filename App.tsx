@@ -26,7 +26,11 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar translucent backgroundColor="transparent" style="light" />
+      <StatusBar
+        translucent
+        backgroundColor="rgba(0, 0, 0, 0.05)"
+        style="light"
+      />
       <Routes />
     </ThemeProvider>
   )
