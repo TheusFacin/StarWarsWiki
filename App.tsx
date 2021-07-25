@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler'
 import React from 'react'
+import { View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import {
   useFonts,
@@ -31,7 +32,9 @@ const App = () => {
         backgroundColor="rgba(0, 0, 0, 0.05)"
         style="light"
       />
-      <Routes />
+      <View style={{ flex: 1, backgroundColor: theme.colors.dark }}>
+        <Routes />
+      </View>
     </ThemeProvider>
   )
 }
