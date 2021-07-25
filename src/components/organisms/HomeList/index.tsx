@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList } from 'react-native'
+import { ItemData } from '../../../@types/ItemDataType'
 import { Card } from '../../molecules'
 import { Text } from '../../atoms'
 
@@ -7,10 +8,7 @@ import { ListContainer } from './styles'
 import { theme } from '../../../styles'
 
 type HomeListProps = {
-  data: {
-    id: string
-    image_url: string
-  }[]
+  data: ItemData[]
   title: string
 }
 

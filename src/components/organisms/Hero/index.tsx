@@ -1,6 +1,7 @@
 import React from 'react'
 import { theme } from '../../../styles'
 import { Text, Logo } from '../../atoms'
+import { ItemData } from '../../../@types/ItemDataType'
 import { IconButton, Tag, PlayButton } from '../../molecules'
 
 import {
@@ -10,12 +11,16 @@ import {
   HeroImageBackground,
 } from './styles'
 
-const Hero = () => {
+type HeroProps = {
+  item: ItemData
+}
+
+const Hero = ({ item: { image_url, title, subtitle, type } }: HeroProps) => {
   return (
     <HeroContainer>
       <HeroImageBackground
         source={{
-          uri: 'https://img.elo7.com.br/product/zoom/2C25A3B/big-poster-filme-star-wars-a-ameaca-fantasma-lo01-90x60-cm-poster-de-filme.jpg',
+          uri: image_url,
         }}
       >
         <HeroGradient
@@ -23,11 +28,11 @@ const Hero = () => {
         >
           <Logo size="small" />
 
-          <Tag mt={200}>Filme</Tag>
+          <Tag mt={200}>{type}</Tag>
           <Text fontFamily="bold" size={28} mt={8}>
-            Episódio I
+            {title}
           </Text>
-          <Text size={18}>A Ameaça Fantasma</Text>
+          <Text size={18}>{subtitle}</Text>
 
           <ButtonsView>
             <IconButton label="Favoritos" iconName="star" onPress={() => {}} />

@@ -1,17 +1,29 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { StackParamList } from '../../../routes'
+import { useDataStore } from '../../../services/stores'
+import { ItemData } from '../../../@types/ItemDataType'
 
 import { CardContainer, CardImage } from './styles'
 
 type CardProps = {
-  item: {
-    id: string
-    image_url: string
-  }
+  item: ItemData
 }
 
+type SplashNavigationProps = StackNavigationProp<StackParamList, 'Home'>
+
 const Card = ({ item }: CardProps) => {
+  const { setSelectedData } = useDataStore()
+  const navigation = useNavigation<SplashNavigationProps>()
+
+  const onSelectItem = () => {
+    setSelectedData(item)
+    navigation.navigate('Detail')
+  }
+
   return (
-    <CardContainer activeOpacity={0.8}>
+    <CardContainer activeOpacity={0.8} onPress={onSelectItem}>
       <CardImage source={{ uri: item.image_url }} />
     </CardContainer>
   )
