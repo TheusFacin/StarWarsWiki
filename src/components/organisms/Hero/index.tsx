@@ -13,9 +13,13 @@ import {
 
 type HeroProps = {
   item: ItemData
+  onDetail?: boolean
 }
 
-const Hero = ({ item: { image_url, title, subtitle, type } }: HeroProps) => {
+const Hero = ({
+  item: { image_url, title, subtitle, type },
+  onDetail,
+}: HeroProps) => {
   return (
     <HeroContainer>
       <HeroImageBackground
@@ -26,9 +30,9 @@ const Hero = ({ item: { image_url, title, subtitle, type } }: HeroProps) => {
         <HeroGradient
           colors={[theme.colors.dark, 'transparent', theme.colors.dark]}
         >
-          <Logo size="small" />
+          {!onDetail && <Logo size="small" />}
 
-          <Tag mt={200}>{type}</Tag>
+          <Tag mt={onDetail ? 224 : 200}>{type}</Tag>
           <Text fontFamily="bold" size={28} mt={8}>
             {title}
           </Text>
@@ -36,8 +40,17 @@ const Hero = ({ item: { image_url, title, subtitle, type } }: HeroProps) => {
 
           <ButtonsView>
             <IconButton label="Favoritos" iconName="star" onPress={() => {}} />
-            <PlayButton />
-            <IconButton label="Saiba mais" iconName="info" onPress={() => {}} />
+
+            {!onDetail && (
+              <>
+                <PlayButton />
+                <IconButton
+                  label="Saiba mais"
+                  iconName="info"
+                  onPress={() => {}}
+                />
+              </>
+            )}
           </ButtonsView>
         </HeroGradient>
       </HeroImageBackground>

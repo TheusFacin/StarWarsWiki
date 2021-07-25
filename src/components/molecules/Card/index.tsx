@@ -11,11 +11,11 @@ type CardProps = {
   item: ItemData
 }
 
-type SplashNavigationProps = StackNavigationProp<StackParamList, 'Home'>
+type CardNavigationProps = StackNavigationProp<StackParamList, 'Home'>
 
 const Card = ({ item }: CardProps) => {
   const { setSelectedData } = useDataStore()
-  const navigation = useNavigation<SplashNavigationProps>()
+  const navigation = useNavigation<CardNavigationProps>()
 
   const onSelectItem = () => {
     setSelectedData(item)
