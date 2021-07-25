@@ -13,6 +13,7 @@ type TextProps = {
   mb?: number
   ml?: number
   mr?: number
+  lh?: number
 }
 
 const Text = ({ children, ...props }: TextProps) => (

@@ -5,6 +5,7 @@ type ItemData = {
   type: string
   description: string
   image_url: string
+  trailer_url?: string
 }
 
 export { ItemData }
