@@ -11,7 +11,7 @@ type CardProps = {
   item: ItemData
 }
 
-type CardNavigationProps = StackNavigationProp<StackParamList, 'Home'>
+type CardNavigationProps = StackNavigationProp<StackParamList, 'App'>
 
 const Card = ({ item }: CardProps) => {
   const { setSelectedData } = useDataStore()

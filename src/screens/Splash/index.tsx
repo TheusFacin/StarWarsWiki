@@ -13,7 +13,7 @@ type SplashProps = {
 const Splash = ({ navigation }: SplashProps) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Home')
+      navigation.navigate('App')
     }, 200)
   }, [navigation])
 
