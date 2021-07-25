@@ -6,4 +6,6 @@ const colors = {
   black: '#000000',
 }
 
-export { colors }
+type Colors = 'white' | 'light' | 'red' | 'dark' | 'black'
+
+export { colors, Colors }

@@ -5,4 +5,6 @@ const fonts = {
   black: 'SourceSansPro_900Black',
 }
 
-export { fonts }
+type Fonts = 'regular' | 'semiBold' | 'bold' | 'black'
+
+export { fonts, Fonts }

@@ -1,8 +1,12 @@
 import styled from 'styled-components/native'
 
-const LogoImg = styled.Image`
-  height: ${({ theme }) => theme.metrics.px(64)}px;
-  width: ${({ theme }) => theme.metrics.px(64)}px;
+type LogoImgProps = {
+  size: number
+}
+
+const LogoImg = styled.Image<LogoImgProps>`
+  height: ${({ size, theme }) => theme.metrics.px(size)}px;
+  width: ${({ size, theme }) => theme.metrics.px(size)}px;
 `
 
 export { LogoImg }

@@ -1,14 +1,22 @@
 import React, { ReactNode } from 'react'
+import { Colors } from '../../../styles/colors'
+import { Fonts } from '../../../styles/fonts'
 
 import { StyledText } from './styles'
 
 type TextProps = {
   children: ReactNode
-  color?: string
+  color?: Colors
+  size?: number
+  fontFamily?: Fonts
+  mt?: number
+  mb?: number
+  ml?: number
+  mr?: number
 }
 
-const Text = ({ children, color }: TextProps) => (
-  <StyledText color={color}>{children}</StyledText>
+const Text = ({ children, ...props }: TextProps) => (
+  <StyledText {...props}>{children}</StyledText>
 )
 
 export { Text, TextProps }

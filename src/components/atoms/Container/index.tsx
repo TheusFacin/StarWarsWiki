@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { Colors } from '../../../styles/colors'
 
 type ContainerProps = {
   direction?: 'column' | 'column-reverse' | 'row' | 'row-reverse'
@@ -20,7 +21,7 @@ type ContainerProps = {
     | 'start'
     | 'stretch'
     | 'unsafe'
-  bg?: 'black' | 'dark' | 'light' | 'red' | 'white'
+  bg?: Colors
   w?: number
   h?: number
 }
