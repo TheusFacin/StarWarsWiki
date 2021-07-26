@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 import { Colors } from '../../../styles/colors'
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 type ContainerProps = {
   direction?: 'column' | 'column-reverse' | 'row' | 'row-reverse'
@@ -28,6 +29,7 @@ type ContainerProps = {
 
 type ScreenScrollContainerProps = {
   bg?: Colors
+  withPadding?: boolean
 }
 
 const Container = styled.View<ContainerProps>`
@@ -40,7 +42,16 @@ const Container = styled.View<ContainerProps>`
   height: ${({ h, theme }) => (h ? `${theme.metrics.px(h)}px` : '100%')};
 `
 
-const ScreenScrollContainer = styled.ScrollView<ScreenScrollContainerProps>`
+const ScreenScrollContainer = styled.ScrollView.attrs<ScreenScrollContainerProps>(
+  ({ theme, withPadding }) => ({
+    contentContainerStyle: withPadding
+      ? {
+          paddingHorizontal: theme.metrics.px(24),
+          paddingTop: getStatusBarHeight() + theme.metrics.px(24),
+        }
+      : {},
+  })
+)<ScreenScrollContainerProps>`
   background-color: ${({ bg, theme }) => theme.colors[bg || 'dark']};
 `
 
