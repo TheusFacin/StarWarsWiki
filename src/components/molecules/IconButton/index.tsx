@@ -10,12 +10,18 @@ import { theme } from '../../../styles'
 type IconButtonProps = {
   iconName: FeatherIconsNames
   label: string
+  disabled?: boolean
   onPress: (event: GestureResponderEvent) => void
 }
 
-const IconButton = ({ iconName, label, onPress }: IconButtonProps) => {
+const IconButton = ({
+  iconName,
+  label,
+  disabled = false,
+  onPress,
+}: IconButtonProps) => {
   return (
-    <ButtonContainer activeOpacity={0.8} onPress={onPress}>
+    <ButtonContainer disabled={disabled} activeOpacity={0.8} onPress={onPress}>
       <Feather
         name={iconName}
         size={theme.metrics.px(24)}

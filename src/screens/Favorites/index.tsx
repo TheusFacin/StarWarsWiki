@@ -37,7 +37,7 @@ const Favorites = ({ navigation }: FavoritesProps) => {
       </Text>
 
       {favorites.map(item => (
-        <Card item={item} key={item.id} />
+        <Card item={item} key={item.title} />
       ))}
     </ScreenScrollContainer>
   )

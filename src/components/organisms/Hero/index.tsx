@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFavorites } from '../../../hooks'
 import { useNavigation } from '@react-navigation/native'
 import { useDataStore } from '../../../services/stores'
@@ -24,12 +24,40 @@ type HeroProps = {
 type HeroNavigationProps = StackNavigationProp<StackParamList>
 
 const Hero = ({ item, onDetail }: HeroProps) => {
-  const { addFavorite, getFavorites } = useFavorites()
+  const [loading, setLoading] = useState(true)
+  const [isFavorite, setIsFavorite] = useState(false)
+  const { addFavorite, getFavorites, removeFavorite } = useFavorites()
   const navigation = useNavigation<HeroNavigationProps>()
   const { setSelectedData } = useDataStore()
 
+  const checkIsFavorite = async () => {
+    setLoading(true)
+
+    const favorites: ItemData[] = await getFavorites()
+    const isInFavoritesList = favorites.some(
+      favorite => favorite.id === item.id && favorite.title === item.title
+    )
+
+    setIsFavorite(isInFavoritesList)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    checkIsFavorite()
+  }, [])
+
+  const handleRemoveFavorite = async () => {
+    setLoading(true)
+    await removeFavorite(item)
+    setLoading(false)
+    await checkIsFavorite()
+  }
+
   const handleAddFavorite = async () => {
+    setLoading(true)
     await addFavorite(item)
+    setLoading(false)
+    await checkIsFavorite()
   }
 
   const handleNavigateToDetail = async () => {
@@ -58,8 +86,9 @@ const Hero = ({ item, onDetail }: HeroProps) => {
           <ButtonsView>
             <IconButton
               label="Favoritos"
-              iconName="star"
-              onPress={handleAddFavorite}
+              iconName={isFavorite ? 'minus-circle' : 'plus-circle'}
+              onPress={isFavorite ? handleRemoveFavorite : handleAddFavorite}
+              disabled={loading}
             />
 
             {!onDetail && (
