@@ -10,6 +10,7 @@ import { StackParamList } from '../../../routes'
 import { IconButton, Tag, PlayButton } from '../../molecules'
 
 import {
+  ButtonItemView,
   ButtonsView,
   HeroContainer,
   HeroGradient,
@@ -26,8 +27,9 @@ type HeroNavigationProps = StackNavigationProp<StackParamList>
 const Hero = ({ item, onDetail }: HeroProps) => {
   const [loading, setLoading] = useState(true)
   const [isFavorite, setIsFavorite] = useState(false)
-  const { addFavorite, getFavorites, removeFavorite } = useFavorites()
+
   const navigation = useNavigation<HeroNavigationProps>()
+  const { addFavorite, getFavorites, removeFavorite } = useFavorites()
   const { setSelectedData } = useDataStore()
 
   const checkIsFavorite = async () => {
@@ -65,6 +67,11 @@ const Hero = ({ item, onDetail }: HeroProps) => {
     navigation.navigate('Detail')
   }
 
+  const handlePlay = () => {
+    setSelectedData(item)
+    navigation.navigate('Watch')
+  }
+
   return (
     <HeroContainer>
       <HeroImageBackground
@@ -84,23 +91,28 @@ const Hero = ({ item, onDetail }: HeroProps) => {
           <Text size={18}>{item.subtitle}</Text>
 
           <ButtonsView>
-            <IconButton
-              label="Favoritos"
-              iconName={isFavorite ? 'minus-circle' : 'plus-circle'}
-              onPress={isFavorite ? handleRemoveFavorite : handleAddFavorite}
-              disabled={loading}
-            />
+            <ButtonItemView align="flex-start">
+              <IconButton
+                label="Favoritos"
+                iconName={isFavorite ? 'minus-circle' : 'plus-circle'}
+                onPress={isFavorite ? handleRemoveFavorite : handleAddFavorite}
+                disabled={loading}
+              />
+            </ButtonItemView>
 
-            {!onDetail && (
-              <>
-                <PlayButton />
+            <ButtonItemView>
+              {item.type === 'Filme' && <PlayButton onPress={handlePlay} />}
+            </ButtonItemView>
+
+            <ButtonItemView align="flex-end">
+              {!onDetail && (
                 <IconButton
                   label="Saiba mais"
                   iconName="info"
                   onPress={handleNavigateToDetail}
                 />
-              </>
-            )}
+              )}
+            </ButtonItemView>
           </ButtonsView>
         </HeroGradient>
       </HeroImageBackground>

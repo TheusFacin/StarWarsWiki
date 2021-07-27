@@ -2,6 +2,10 @@ import styled from 'styled-components/native'
 import Constants from 'expo-constants'
 import { LinearGradient } from 'expo-linear-gradient'
 
+type ButtonItemViewProps = {
+  align?: 'baseline' | 'center' | 'flex-end' | 'flex-start' | 'stretch'
+}
+
 const HeroContainer = styled.View`
   display: flex;
   flex-direction: column;
@@ -32,4 +36,16 @@ const ButtonsView = styled.View`
   justify-content: space-between;
 `
 
-export { HeroContainer, HeroImageBackground, HeroGradient, ButtonsView }
+const ButtonItemView = styled.View<ButtonItemViewProps>`
+  flex: 1;
+  flex-direction: column;
+  align-items: ${({ align }) => align || 'center'};
+`
+
+export {
+  HeroContainer,
+  HeroImageBackground,
+  HeroGradient,
+  ButtonsView,
+  ButtonItemView,
+}
