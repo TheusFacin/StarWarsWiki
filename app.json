@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "primaryColor": "#161616",
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#161616",
@@ -36,6 +37,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Aplicativo com informações sobre filmes e personagens de StarWars",
+    "githubUrl": "https://github.com/TheusFacin/StarWarsWiki"
   }
 }
