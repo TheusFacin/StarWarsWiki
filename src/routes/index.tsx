@@ -5,12 +5,11 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack'
 
-import { Splash, Detail, Watch } from '../screens'
+import { Detail, Watch } from '../screens'
 import { theme } from '../styles'
 import { TabRoutes } from './tabRoutes'
 
 type StackParamList = {
-  Splash: undefined
   App: undefined
   Detail: undefined
   Watch: undefined
@@ -25,7 +24,6 @@ const Routes = () => {
         headerMode="none"
         screenOptions={{ cardStyle: { backgroundColor: theme.colors.dark } }}
       >
-        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="App" component={TabRoutes} />
         <Stack.Screen name="Detail" component={Detail} />
         <Stack.Screen
