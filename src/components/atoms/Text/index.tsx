@@ -14,6 +14,7 @@ type TextProps = {
   ml?: number
   mr?: number
   lh?: number
+  ta?: 'center' | 'end' | 'justify' | 'left' | 'right' | 'start'
 }
 
 const Text = ({ children, ...props }: TextProps) => (

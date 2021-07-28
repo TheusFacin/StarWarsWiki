@@ -1,4 +1,5 @@
 export * from './Card'
+export * from './FavoriteStateModal'
 export * from './Header'
 export * from './IconButton'
 export * from './PlayButton'

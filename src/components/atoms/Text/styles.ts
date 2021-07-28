@@ -11,6 +11,7 @@ const StyledText = styled.Text<TextProps>`
   margin-left: ${({ ml, theme }) => theme.metrics.px(ml || 0)}px;
   margin-right: ${({ mr, theme }) => theme.metrics.px(mr || 0)}px;
   line-height: ${({ lh, size, theme }) => theme.metrics.px(lh || size || 24)}px;
+  text-align: ${({ ta }) => ta || 'left'};
 `
 
 export { StyledText }

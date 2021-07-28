@@ -7,7 +7,12 @@ import { Text, Logo } from '../../atoms'
 import { ItemData } from '../../../@types/ItemDataType'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { StackParamList } from '../../../routes'
-import { IconButton, Tag, PlayButton } from '../../molecules'
+import {
+  IconButton,
+  Tag,
+  PlayButton,
+  FavoriteStateModal,
+} from '../../molecules'
 
 import {
   ButtonItemView,
@@ -27,6 +32,7 @@ type HeroNavigationProps = StackNavigationProp<StackParamList>
 const Hero = ({ item, onDetail }: HeroProps) => {
   const [loading, setLoading] = useState(true)
   const [isFavorite, setIsFavorite] = useState(false)
+  const [showFavoriteModal, setShowFavoriteModal] = useState(false)
 
   const navigation = useNavigation<HeroNavigationProps>()
   const { addFavorite, getFavorites, removeFavorite } = useFavorites()
@@ -48,11 +54,20 @@ const Hero = ({ item, onDetail }: HeroProps) => {
     checkIsFavorite()
   }, [])
 
+  const showModal = () => {
+    setShowFavoriteModal(true)
+    setTimeout(() => {
+      setShowFavoriteModal(false)
+    }, 1500)
+  }
+
   const handleRemoveFavorite = async () => {
     setLoading(true)
     await removeFavorite(item)
     setLoading(false)
     await checkIsFavorite()
+
+    showModal()
   }
 
   const handleAddFavorite = async () => {
@@ -60,6 +75,8 @@ const Hero = ({ item, onDetail }: HeroProps) => {
     await addFavorite(item)
     setLoading(false)
     await checkIsFavorite()
+
+    showModal()
   }
 
   const handleNavigateToDetail = async () => {
@@ -116,6 +133,12 @@ const Hero = ({ item, onDetail }: HeroProps) => {
           </ButtonsView>
         </HeroGradient>
       </HeroImageBackground>
+
+      <FavoriteStateModal
+        visible={showFavoriteModal}
+        type={isFavorite ? 'added' : 'removed'}
+        onClose={() => setShowFavoriteModal(false)}
+      />
     </HeroContainer>
   )
 }
