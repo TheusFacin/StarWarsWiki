@@ -21,9 +21,20 @@ const useGetData = () => {
     }
   }
 
+  const getSearchResult = async (query: string) => {
+    try {
+      const response = await api.get('/search', { params: { query } })
+      return response.data
+    } catch (error) {
+      console.log({ error })
+      return { error }
+    }
+  }
+
   return {
     getFilms,
     getCharacters,
+    getSearchResult,
   }
 }
 
