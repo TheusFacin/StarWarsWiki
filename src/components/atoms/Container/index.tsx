@@ -25,6 +25,7 @@ type ContainerProps = {
   bg?: Colors
   w?: number
   h?: number
+  withPadding?: boolean
 }
 
 type ScreenScrollContainerProps = {
@@ -40,6 +41,9 @@ const Container = styled.View<ContainerProps>`
   background-color: ${({ bg, theme }) => theme.colors[bg || 'dark']};
   width: ${({ w, theme }) => (w ? `${theme.metrics.px(w)}px` : '100%')};
   height: ${({ h, theme }) => (h ? `${theme.metrics.px(h)}px` : '100%')};
+  padding: ${({ withPadding, theme }) =>
+      withPadding ? getStatusBarHeight() + theme.metrics.px(24) : 0}px
+    ${({ withPadding, theme }) => (withPadding ? theme.metrics.px(24) : 0)}px 0;
 `
 
 const ScreenScrollContainer = styled.ScrollView.attrs<ScreenScrollContainerProps>(

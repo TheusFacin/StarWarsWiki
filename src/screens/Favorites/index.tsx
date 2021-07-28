@@ -4,7 +4,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { ItemData } from '../../@types/ItemDataType'
 import { TabParamList } from '../../routes/tabRoutes'
 
-import { Card, ScreenScrollContainer, Text } from '../../components'
+import { GridList, Container, Header } from '../../components'
 
 type FavoritesNavigationProps = BottomTabNavigationProp<
   TabParamList,
@@ -31,15 +31,15 @@ const Favorites = ({ navigation }: FavoritesProps) => {
   }, [])
 
   return (
-    <ScreenScrollContainer withPadding>
-      <Text size={28} fontFamily="bold">
-        Favoritos
-      </Text>
+    <Container withPadding>
+      <Header title="Favoritos" />
 
-      {favorites.map(item => (
-        <Card item={item} key={item.title} />
-      ))}
-    </ScreenScrollContainer>
+      <GridList
+        data={favorites}
+        noDataText="Nenhum Favorito Adicionado"
+        type="Kylo"
+      />
+    </Container>
   )
 }
 

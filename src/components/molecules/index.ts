@@ -1,4 +1,5 @@
 export * from './Card'
+export * from './Header'
 export * from './IconButton'
 export * from './PlayButton'
 export * from './Tag'
